@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>TCP Prague controlled RTT dependence</title>
+    <meta name="description" content="Information about TCP Prague's RTT independence" />
+    <meta name="keywords" content="TCP, L4S, TCP Prague, RTT independence" />
+    <meta name="theme-color" content="#198bed" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+    <main>
+    <header>
+        <h1 class="title">TCP Prague controlled RTT dependence</h1>
+        <p class="subtitle">
+            Implementing the <em>Reduced RTT dependence</em> part of the 
+            <a href="https://datatracker.ietf.org/doc/draft-ietf-tsvwg-ecn-l4s-id/" target="_blank">L4S Prague Requirement</a>
+        </p>
+    </header>
+    <section>
+        <h2>Implementation</h2>
+        <p>
+            The code itself is available in the L4S Linux kernel tree, as part
+            of the TCP Prague congestion control module, and is included in all
+            tags following <a href="https://github.com/L4STeam/linux/releases/tag/testing%2F01-03-2020">The Mar. 1 2020 testing release</a>. 
+        </p>
+        <p>
+            Note that you can grab pre-build kernel images in the "Actions" 
+            tab on Github, as build artifacts.
+        </p>
+    </section>
+    <section>
+        <h2>Video demonstration</h2>
+        <video controls width="800" height="600">
+            <source src="prague_rtt_independence.mp4" type="video/mp4" />
+        </video>
+    </section>
+    <section>
+        <h2>TSVWG interim meeting presentation</h2>
+        <p>
+            The high-level approach has been described during the interim
+            meeting that took place on Feb. 20 2020.
+        </p>
+        <object data="rtt_indep_tsvwg_interim_v1_4.pdf" width="800" height="600" />
+    </section>
+    </main>
+</body>
+</html>
