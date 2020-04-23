@@ -1,12 +1,12 @@
 body {
     font-family: apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
         "Helvetica Neue", Arial, sans-serif;
-        background-color: #fafafa;
-        line-height: 1.5;
+    background-color: #fafafa;
+    line-height: 1.5;
 }
 main {
     margin: 0 auto 4rem;
-    max-width: 800px;
+    max-width: 48rem;
 }
 header {
     padding: 3rem;
@@ -30,6 +30,10 @@ p {
     margin: 0 0 0.5rem 0;
     font-weight: 400;
 }
+pre {
+    font-weight: 400;
+    font-size: 1rem;
+}
 a {
     text-decoration: none;
     color: #146eeb;
@@ -37,14 +41,125 @@ a {
 a:hover {
     text-decoration: underline;
 }
-
+object,
+video {
+    display: block;
+    margin: auto;
+    padding: 1rem 0 1rem 0;
+}
+.head-nav a,
+button {
+    display: inline-block;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.15;
+    letter-spacing: 0.025rem;
+    border: 1px solid #ebebeb;
+    color: #444;
+    margin: 0 0.5rem 0.75rem 0;
+    padding: 0.5rem 1rem;
+    border-color: ;
+    background-color: #ebebeb;
+    text-decoration: none;
+    user-select: none;
+    outline: none;
+}
+.head-nav a:hover,
+button:hover,
+button:focus {
+    border-color: #e0e0e0;
+    background-color: #e0e0e0;
+    text-decoration: none;
+}
+.head-nav {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    background-color: #ebebeb;
+    text-align: center;
+}
+.head-nav a {
+    margin: 0; 
+    padding: 1rem;
+}
 .title {
     line-height: 1.15;
     font-size: 2.125rem;
-    margin: 0;
+    margin: 1rem 0 0 0;
 }
 .subtitle {
     font-size: 1.125rem;
     margin: 0;
     color: #444;
+}
+.download-block,
+.download-block form,
+.download-block h2 {
+    display: inline-block;
+}
+.download-button {
+    border-radius: 1.25rem;
+}
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted #146eeb;
+    cursor: help;
+}
+.tooltip .tooltiptext {
+    visibility: hidden;
+    background-color: black;
+    color: #fafafa;
+    padding: 0.125rem .5rem .5rem .5rem;
+    border-radius: 5px;
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    margin-top: 2rem;
+    margin-left: -10rem;
+    font-size: .85rem;
+    white-space: nowrap;
+}
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+.param-table {
+    display: table;
+    margin: 2rem 0 0 0;
+    background-color: #ebebeb;
+}
+.param-row,
+.param-header {
+    display: table-row;
+}
+.param-header {
+    background-color: #e0e0e0;
+}
+.param,
+.param-default,
+.param-text,
+.param-header-text {
+    display: table-cell;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+}
+.param-default {
+    text-align: center;
+}
+.param-header-text {
+    font-weight: bold;
+    text-align: center;
+    padding: .7rem 1rem .7rem 1rem;
+}
+.param-mode {
+    display: inline-block;
+    margin-left: 7%;
+}
+.inline-code {
+    font-family: monospace;
+    font-weight: 400;
 }

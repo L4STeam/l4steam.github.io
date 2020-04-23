@@ -10,6 +10,12 @@
 </head>
 <body>
     <main>
+    <nav class="head-nav">
+        <a href="#implementation">Implementation</a></li>
+        <a href="#video-demonstration">Video demonstration</a></li>
+        <a href="#usage">Usage</a></li>
+        <a href="#tsvwg-slides">TSVWG presentation</a></li>
+    </nav>
     <header>
         <h1 class="title">TCP Prague controlled RTT dependence</h1>
         <p class="subtitle">
@@ -17,31 +23,113 @@
             <a href="https://datatracker.ietf.org/doc/draft-ietf-tsvwg-ecn-l4s-id/" target="_blank">L4S Prague Requirement</a>
         </p>
     </header>
-    <section>
+    <section id="implementation">
         <h2>Implementation</h2>
         <p>
             The code itself is available in the L4S Linux kernel tree, as part
             of the TCP Prague congestion control module, and is included in all
-            tags following <a href="https://github.com/L4STeam/linux/releases/tag/testing%2F01-03-2020">The Mar. 1 2020 testing release</a>. 
+            tags following <a href="https://github.com/L4STeam/linux/releases/tag/testing%2F01-03-2020" target="_blank">The Mar. 1 2020 testing release</a>. 
         </p>
         <p>
-            Note that you can grab pre-build kernel images in the "Actions" 
-            tab on Github, as build artifacts.
+            Note that you can grab pre-build kernel images in the 
+            <a href="https://github.com/L4STeam/linux/actions" target="_blank">
+                "Actions" tab on Github</a>, as build artifacts.
         </p>
     </section>
-    <section>
-        <h2>Video demonstration</h2>
-        <video controls width="800" height="600">
+    <section id="video-demonstration">
+        <div class="download-block">
+            <h2>Video demonstration</h2>
+            <form method="get" action="prague_rtt_independence.mp4">
+                <button class="download-button" type="submit">Download</button>
+            </form>
+        </div>
+        <video controls width="700" height="438">
             <source src="prague_rtt_independence.mp4" type="video/mp4" />
         </video>
     </section>
-    <section>
-        <h2>TSVWG interim meeting presentation</h2>
+    <section id="usage">
+        <h2>Usage</h2>
+        <p>
+            You can control TCP Prague's RTT dependence using the following 
+            module parameters, either at 
+            <span class="tooltip">load time
+                <span class="tooltiptext"> e.g., `
+                    <span class="inline-code">
+                        sudo modprobe tcp_prague prague_rtt_scaling=1
+                    </span>`
+                </span>
+            </span>, or through the 
+            <span class="tooltip">sysfs interface
+                <span class="tooltiptext"> e.g., `
+                    <span class="inline-code">
+                        echo 1 | sudo tee /sys/module/tcp_prague/parameters/prague_rtt_scaling
+                    </span><br /> Note that those settings will only affect
+                    connections initialized <em>after</em> the change, 
+                    thus not<br />existing ones.
+                </span>
+            </span>:
+        </p>
+        <div class="param-table">
+            <div class="param-header">
+                <p class="param-header-text">Parameter</p>
+                <p class="param-header-text">Default</p>
+                <p class="param-header-text"></p>
+            </div>
+            <div class="param-row">
+                <pre class="param">prague_rtt_scaling <em>&lt;mode&gt;</em></pre>
+                <pre class="param-default">0</pre>
+                <p class="param-text">
+                Select the desired mode of RTT dependence.:<br />
+                <em class="param-mode">0</em>
+                    disables any form of RTT independence.<br />
+                <em class="param-mode">1</em> 
+                    causes Prague to behave as if it was experiencing 
+                    a RTT of <em>at least prague_rtt_target</em>, i.e., is
+                    RTT independent up to the target RTT.<br />
+                <em class="param-mode">2</em>
+                    extends the previous mode (<em>1</em>) by 
+                    providing a minimal bound on the frequency of CE marks 
+                    in steady state (currently at least 1 every 8 RTTs).<br />
+                <em class="param-mode">3</em>
+                    causes Prague to behave as if it was experiencing
+                    a RTT of <em>true_e2e_rtt + prague_rtt_target</em>.
+                </p>
+            </div>
+            <div class="param-row">
+                <pre class="param">prague_rtt_target <em>&lt;target_us&gt;</em></pre>
+                <pre class="param-default">10000</pre>
+                <p class="param-text">Define the target RTT 
+                (in microseconds) that TCP Prague should aim for. Its exact meaning
+                depends on the underlying algorithm.</p>
+            </div>
+            <div class="param-row">
+                <pre class="param">prague_rtt_transition <em>&lt;round&gt;</em></pre>
+                <pre class="param-default">100</pre>
+                <p class="param-text">
+                Delay the activation of the RTT independence
+                algorithms by <em>&lt;round&gt;</em> RTTs after exiting slow-start.
+                </p>
+            </div>
+        </div>
+    </section>
+    <section id="tsvwg-presentation">
+        <div class="download-block">
+            <h2 class="download-heading">TSVWG interim meeting presentation</h2>
+            <form method="get" action="rtt_indep_tsvwg_interim_v1_5.pdf">
+                <button class="download-button" type="submit">Download</button>
+            </form>
+        </div>
         <p>
             The high-level approach has been described during the interim
-            meeting that took place on Feb. 20 2020.
+            meeting that took place on Feb. 20 2020. You can also
+            <a href="https://youtu.be/CoDPs12WdxY?t=5400" target="_blank">
+                watch the recording on Youtube</a>.
         </p>
-        <object data="rtt_indep_tsvwg_interim_v1_5.pdf" width="800" height="600" />
+        <object 
+            data="rtt_indep_tsvwg_interim_v1_5.pdf" 
+            type="application/pdf"
+            width="700" height="438">
+        </object>
     </section>
     </main>
 </body>
