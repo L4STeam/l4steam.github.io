@@ -1,0 +1,76 @@
+cli
+---
+
++ ip tcp_metrics show
+10.9.9.2 age 18.097sec ssthresh 74 cwnd 128 rtt 84410us rttvar 46373us source 10.9.9.1
+
+
+srv
+---
+
++ ip tcp_metrics show
+10.9.9.1 age 18.061sec cwnd 10 rtt 84490us rttvar 47380us source 10.9.9.2
+
+
+mid
+---
+
++ tc-l4s -s -d qdisc show dev mid.l
+qdisc htb 1: root refcnt 2 r2q 10 default 0x1 direct_packets_stat 0 ver 3.17 direct_qlen 1000
+ Sent 8059830 bytes 121121 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+qdisc pie 8073: parent 1:1 limit 1000p target 15.0ms tupdate 15.0ms alpha 2 beta 20 
+ Sent 8059830 bytes 121121 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+prob 0.000000 delay 0us avg_dq_rate 0
+pkts_in 121121 overlimit 0 dropped 0 maxq 0 ecn_mark 0
+
+qdisc ingress ffff: parent ffff:fff1 ---------------- 
+ Sent 363955840 bytes 242988 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+
++ tc-l4s -s -d class show dev mid.l
+class htb 1:1 root leaf 8073: prio 0 quantum 200000 rate 50Mbit ceil 50Mbit linklayer ethernet burst 1600b/1 mpu 0b cburst 1600b/1 mpu 0b level 0 
+ Sent 8059830 bytes 121121 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+ lended: 121121 borrowed: 0 giants: 0
+ tokens: 3755 ctokens: 3755
+
+
++ tc-l4s -s -d qdisc show dev mid.r
+qdisc htb 1: root refcnt 2 r2q 10 default 0x1 direct_packets_stat 0 ver 3.17 direct_qlen 1000
+ Sent 367048816 bytes 242784 pkt (dropped 204, overlimits 233080 requeues 0) 
+ backlog 0b 0p requeues 0
+qdisc pie 8074: parent 1:1 limit 1000p target 15.0ms tupdate 15.0ms alpha 2 beta 20 
+ Sent 367048816 bytes 242784 pkt (dropped 204, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+prob 0.000000 delay 0us avg_dq_rate 0
+pkts_in 242784 overlimit 0 dropped 204 maxq 581 ecn_mark 0
+
+qdisc ingress ffff: parent ffff:fff1 ---------------- 
+ Sent 6364136 bytes 121121 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+
++ tc-l4s -s -d class show dev mid.r
+class htb 1:1 root leaf 8074: prio 0 quantum 200000 rate 50Mbit ceil 50Mbit linklayer ethernet burst 1600b/1 mpu 0b cburst 1600b/1 mpu 0b level 0 
+ Sent 367048816 bytes 242784 pkt (dropped 204, overlimits 233080 requeues 0) 
+ backlog 0b 0p requeues 0
+ lended: 242784 borrowed: 0 giants: 0
+ tokens: 3755 ctokens: 3755
+
+
++ tc-l4s -s -d qdisc show dev ifb4mid.l
+qdisc netem 1: root refcnt 2 limit 1000000 delay 40.0ms
+ Sent 367358022 bytes 242993 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+
++ tc-l4s -s -d class show dev ifb4mid.l
+
++ tc-l4s -s -d qdisc show dev ifb4mid.r
+qdisc netem 1: root refcnt 2 limit 1000000 delay 40.0ms
+ Sent 8060180 bytes 121126 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+
++ tc-l4s -s -d class show dev ifb4mid.r
+
+

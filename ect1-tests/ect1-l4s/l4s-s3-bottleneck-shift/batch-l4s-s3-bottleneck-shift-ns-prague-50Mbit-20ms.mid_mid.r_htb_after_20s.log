@@ -1,0 +1,17 @@
++ set -e
++ sleep 20
+++ root_qdisc
+++ head -1
+++ awk '{print $2}'
+++ tc qdisc show dev mid.r
++ [[ htb == htb ]]
++ tc-l4s class change dev mid.r parent 1: classid 1:1 htb rate 50Mbit ceil 50Mbit
++ test -n 'pie noecn'
+++ child_qdisc 1
+++ local n=1
+++ tc qdisc show dev mid.r
+++ awk '{print $2}'
+++ sed '2q;d'
++ [[ dualpi2 == \p\i\e ]]
++ ch_op=replace
++ tc-l4s qdisc replace dev mid.r parent 1:1 pie noecn

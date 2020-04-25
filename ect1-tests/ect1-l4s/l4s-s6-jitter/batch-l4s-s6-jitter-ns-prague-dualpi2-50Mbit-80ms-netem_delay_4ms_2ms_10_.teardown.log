@@ -1,0 +1,96 @@
+cli
+---
+
++ ip tcp_metrics show
+10.9.9.2 age 15.675sec ssthresh 159 cwnd 114 rtt 89194us rttvar 72638us source 10.9.9.1
+
+
+srv
+---
+
++ ip tcp_metrics show
+10.9.9.1 age 15.640sec cwnd 10 rtt 87639us rttvar 70615us source 10.9.9.2
+
+
+mid
+---
+
++ tc-l4s -s -d qdisc show dev mid.l
+qdisc htb 1: root refcnt 2 r2q 10 default 0x1 direct_packets_stat 0 ver 3.17 direct_qlen 1000
+ Sent 9179740 bytes 115778 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+qdisc dualpi2 80af: parent 1:1 [Unknown qdisc, optlen=104] 
+ Sent 9179740 bytes 115778 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+qdisc ingress ffff: parent ffff:fff1 ---------------- 
+ Sent 196086992 bytes 131184 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+
++ tc-l4s -s -d class show dev mid.l
+class htb 1:1 root leaf 80af: prio 0 quantum 200000 rate 50Mbit ceil 50Mbit linklayer ethernet burst 1600b/1 mpu 0b cburst 1600b/1 mpu 0b level 0 
+ Sent 9179740 bytes 115778 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+ lended: 115778 borrowed: 0 giants: 0
+ tokens: 3755 ctokens: 3755
+
+class dualpi2 80af: parent 80af: 
+
+class dualpi2 80af: parent 80af: 
+
+class dualpi2 80af: parent 80af: 
+
+class dualpi2 80af: parent 80af: 
+
+
++ tc-l4s -s -d qdisc show dev mid.r
+qdisc htb 1: root refcnt 2 r2q 10 default 0x1 direct_packets_stat 0 ver 3.17 direct_qlen 1000
+ Sent 197923568 bytes 131184 pkt (dropped 0, overlimits 63484 requeues 0) 
+ backlog 0b 0p requeues 0
+qdisc dualpi2 80b0: parent 1:1 [Unknown qdisc, optlen=104] 
+ Sent 197923568 bytes 131184 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+qdisc ingress ffff: parent ffff:fff1 ---------------- 
+ Sent 7558848 bytes 115778 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+
++ tc-l4s -s -d class show dev mid.r
+class htb 1:1 root leaf 80b0: prio 0 quantum 200000 rate 50Mbit ceil 50Mbit linklayer ethernet burst 1600b/1 mpu 0b cburst 1600b/1 mpu 0b level 0 
+ Sent 197923568 bytes 131184 pkt (dropped 0, overlimits 63484 requeues 0) 
+ backlog 0b 0p requeues 0
+ lended: 131184 borrowed: 0 giants: 0
+ tokens: 3755 ctokens: 3755
+
+class dualpi2 80b0: parent 80b0: 
+
+class dualpi2 80b0: parent 80b0: 
+
+class dualpi2 80b0: parent 80b0: 
+
+class dualpi2 80b0: parent 80b0: 
+
+
++ tc-l4s -s -d qdisc show dev ifb4mid.l
+qdisc netem 1: root refcnt 2 limit 1000000 delay 40.0ms
+ Sent 197923918 bytes 131189 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+qdisc netem 10: parent 1:1 limit 1000 delay 4.0ms  2.0ms 10%
+ Sent 197923918 bytes 131189 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+
++ tc-l4s -s -d class show dev ifb4mid.l
+class netem 1:1 parent 1: leaf 10: 
+
+
++ tc-l4s -s -d qdisc show dev ifb4mid.r
+qdisc netem 1: root refcnt 2 limit 1000000 delay 40.0ms
+ Sent 9180090 bytes 115783 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+qdisc netem 10: parent 1:1 limit 1000 delay 4.0ms  2.0ms 10%
+ Sent 9180090 bytes 115783 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+
++ tc-l4s -s -d class show dev ifb4mid.r
+class netem 1:1 parent 1: leaf 10: 
+
+
+

@@ -1,0 +1,80 @@
+cli
+---
+
++ ip tcp_metrics show
+10.9.9.2 age 17.717sec ssthresh 103 cwnd 110 rtt 81051us rttvar 42911us source 10.9.9.1
+
+
+srv
+---
+
++ ip tcp_metrics show
+10.9.9.1 age 17.678sec cwnd 10 rtt 80249us rttvar 46101us source 10.9.9.2
+
+
+mid
+---
+
++ tc-l4s -s -d qdisc show dev mid.l
+qdisc htb 1: root refcnt 2 r2q 10 default 0x1 direct_packets_stat 0 ver 3.17 direct_qlen 1000
+ Sent 7240238 bytes 109491 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+qdisc red 806f: parent 1:1 limit 400000b min 33333b max 100000b ecn adaptive ewma 5 probability 0.00956593 Scell_log 13
+ Sent 7240238 bytes 109491 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+  marked 0 early 0 pdrop 0 other 0 
+qdisc ingress ffff: parent ffff:fff1 ---------------- 
+ Sent 324979196 bytes 217003 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+
++ tc-l4s -s -d class show dev mid.l
+class htb 1:1 root leaf 806f: prio 0 quantum 200000 rate 50Mbit ceil 50Mbit linklayer ethernet burst 1600b/1 mpu 0b cburst 1600b/1 mpu 0b level 0 
+ Sent 7240238 bytes 109491 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+ lended: 109491 borrowed: 0 giants: 0
+ tokens: 3755 ctokens: 3755
+
+class red 806f:1 parent 806f: 
+
+class red 806f:1 parent 806f: 
+
+
++ tc-l4s -s -d qdisc show dev mid.r
+qdisc htb 1: root refcnt 2 r2q 10 default 0x1 direct_packets_stat 0 ver 3.17 direct_qlen 1000
+ Sent 328017238 bytes 217003 pkt (dropped 0, overlimits 194256 requeues 0) 
+ backlog 0b 0p requeues 0
+qdisc red 8070: parent 1:1 limit 400000b min 33333b max 100000b ecn adaptive ewma 5 probability 0.00956593 Scell_log 13
+ Sent 328017238 bytes 217003 pkt (dropped 0, overlimits 824 requeues 0) 
+ backlog 0b 0p requeues 0
+  marked 824 early 0 pdrop 0 other 0 
+qdisc ingress ffff: parent ffff:fff1 ---------------- 
+ Sent 5707364 bytes 109491 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+
++ tc-l4s -s -d class show dev mid.r
+class htb 1:1 root leaf 8070: prio 0 quantum 200000 rate 50Mbit ceil 50Mbit linklayer ethernet burst 1600b/1 mpu 0b cburst 1600b/1 mpu 0b level 0 
+ Sent 328017238 bytes 217003 pkt (dropped 0, overlimits 194256 requeues 0) 
+ backlog 0b 0p requeues 0
+ lended: 217003 borrowed: 0 giants: 0
+ tokens: 3755 ctokens: 3755
+
+class red 8070:1 parent 8070: 
+
+class red 8070:1 parent 8070: 
+
+
++ tc-l4s -s -d qdisc show dev ifb4mid.l
+qdisc netem 1: root refcnt 2 limit 1000000 delay 40.0ms
+ Sent 328017588 bytes 217008 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+
++ tc-l4s -s -d class show dev ifb4mid.l
+
++ tc-l4s -s -d qdisc show dev ifb4mid.r
+qdisc netem 1: root refcnt 2 limit 1000000 delay 40.0ms
+ Sent 7240588 bytes 109496 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+
++ tc-l4s -s -d class show dev ifb4mid.r
+
+

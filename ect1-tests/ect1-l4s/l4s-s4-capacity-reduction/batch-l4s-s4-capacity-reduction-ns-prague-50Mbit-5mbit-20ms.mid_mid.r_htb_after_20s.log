@@ -1,0 +1,9 @@
++ set -e
++ sleep 20
+++ root_qdisc
+++ head -1
+++ tc qdisc show dev mid.r
+++ awk '{print $2}'
++ [[ htb == htb ]]
++ tc-l4s class change dev mid.r parent 1: classid 1:1 htb rate 5mbit ceil 5mbit
++ test -n ''

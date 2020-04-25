@@ -1,0 +1,90 @@
+cli
+---
+
++ ip tcp_metrics show
+10.9.9.2 age 56.456sec ssthresh 210 cwnd 231 rtt 160877us rttvar 87582us source 10.9.9.1
+
+
+srv
+---
+
++ ip tcp_metrics show
+10.9.9.1 age 56.383sec cwnd 10 rtt 160209us rttvar 90803us source 10.9.9.2
+
+
+mid
+---
+
++ tc-l4s -s -d qdisc show dev mid.l
+qdisc htb 1: root refcnt 2 r2q 10 default 0x1 direct_packets_stat 0 ver 3.17 direct_qlen 1000
+ Sent 21328802 bytes 322665 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+qdisc fq_codel 8083: parent 1:1 limit 10240p flows 1 quantum 1514 target 3.0ms interval 40.0ms memory_limit 32Mb ecn 
+ Sent 21328802 bytes 322665 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+  maxpacket 722 drop_overlimit 0 new_flow_count 1 ecn_mark 0
+  new_flows_len 0 old_flows_len 1
+qdisc ingress ffff: parent ffff:fff1 ---------------- 
+ Sent 961948380 bytes 642221 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+
++ tc-l4s -s -d class show dev mid.l
+class htb 1:1 root leaf 8083: prio 0 quantum 200000 rate 50Mbit ceil 50Mbit linklayer ethernet burst 1600b/1 mpu 0b cburst 1600b/1 mpu 0b level 0 
+ Sent 21328802 bytes 322665 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+ lended: 322665 borrowed: 0 giants: 0
+ tokens: 3755 ctokens: 3755
+
+class fq_codel 8083:1 parent 8083: 
+ (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+  deficit 430 count 0 lastcount 0 ldelay 1us
+class fq_codel 8083:1 parent 8083: 
+ (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+  deficit 430 count 0 lastcount 0 ldelay 1us
+
++ tc-l4s -s -d qdisc show dev mid.r
+qdisc htb 1: root refcnt 2 r2q 10 default 0x1 direct_packets_stat 0 ver 3.17 direct_qlen 1000
+ Sent 970939474 bytes 642221 pkt (dropped 0, overlimits 525386 requeues 0) 
+ backlog 0b 0p requeues 0
+qdisc fq_codel 8084: parent 1:1 limit 10240p flows 1 quantum 1514 target 3.0ms interval 40.0ms memory_limit 32Mb ecn 
+ Sent 970939474 bytes 642221 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+  maxpacket 1514 drop_overlimit 0 new_flow_count 1 ecn_mark 345
+  new_flows_len 0 old_flows_len 1
+qdisc ingress ffff: parent ffff:fff1 ---------------- 
+ Sent 16811492 bytes 322665 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+
++ tc-l4s -s -d class show dev mid.r
+class htb 1:1 root leaf 8084: prio 0 quantum 200000 rate 50Mbit ceil 50Mbit linklayer ethernet burst 1600b/1 mpu 0b cburst 1600b/1 mpu 0b level 0 
+ Sent 970939474 bytes 642221 pkt (dropped 0, overlimits 525386 requeues 0) 
+ backlog 0b 0p requeues 0
+ lended: 642221 borrowed: 0 giants: 0
+ tokens: 3755 ctokens: 3755
+
+class fq_codel 8084:1 parent 8084: 
+ (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+  deficit 838 count 9 lastcount 1 ldelay 1us
+class fq_codel 8084:1 parent 8084: 
+ (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+  deficit 838 count 9 lastcount 1 ldelay 1us
+
++ tc-l4s -s -d qdisc show dev ifb4mid.l
+qdisc netem 1: root refcnt 2 limit 1000000 delay 80.0ms
+ Sent 970939964 bytes 642228 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+
++ tc-l4s -s -d class show dev ifb4mid.l
+
++ tc-l4s -s -d qdisc show dev ifb4mid.r
+qdisc netem 1: root refcnt 2 limit 1000000 delay 80.0ms
+ Sent 21329222 bytes 322671 pkt (dropped 0, overlimits 0 requeues 0) 
+ backlog 0b 0p requeues 0
+
++ tc-l4s -s -d class show dev ifb4mid.r
+
+
