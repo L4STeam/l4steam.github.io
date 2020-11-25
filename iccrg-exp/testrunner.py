@@ -475,6 +475,7 @@ def gen_testplan():
     testplan.append(Test(Prague, cc2=[Cubic],
                          bw=100, rtt=20))
     Test.save_config(testplan)
+    return testplan
 
 
 parser = argparse.ArgumentParser(

@@ -243,8 +243,6 @@ function run_test()
         iperf_servers s$i
     done
 
-    iperf_servers s1 s2 s3 s4 s5
-
     echo "Running tests for ${TIME}sec"
     for i in $(seq $HOST_PAIRS); do
         iperf_client c$i s$i "" &
