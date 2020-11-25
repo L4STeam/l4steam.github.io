@@ -178,8 +178,8 @@ function setup()
 
 function set_sysctl()
 {
-    ns_exec "$n" sysctl -qw "net.ipv4.tcp_congestion_control=${CCA[$1]}"
-    ns_exec "$n" sysctl -qw "net.ipv4.tcp_ecn=${ECN[$1]}"
+    ns_exec "$1" sysctl -qw "net.ipv4.tcp_congestion_control=${CCA[$1]}"
+    ns_exec "$1" sysctl -qw "net.ipv4.tcp_ecn=${ECN[$1]}"
 }
 
 function gen_suffix()
@@ -205,15 +205,6 @@ function iperf_server()
         > "${DATA_DIR}/qdelay_$(gen_suffix $ns).qdelay" &
 }
 
-function iperf_servers()
-{
-    _sudo killall iperf &> /dev/null || true
-    for i in "$@"; do
-        iperf_server $i ""
-    done
-    sleep .1
-}
-
 function iperf_client()
 {
     local ns=$1
@@ -237,11 +228,13 @@ function run_test()
 {
     setup_aqm
 
+    _sudo killall iperf &> /dev/null || true
     for i in $(seq $HOST_PAIRS); do
         set_sysctl s$i
         set_sysctl c$i
-        iperf_servers s$i
+        iperf_server s$i ""
     done
+    sleep .1
 
     echo "Running tests for ${TIME}sec"
     for i in $(seq $HOST_PAIRS); do
