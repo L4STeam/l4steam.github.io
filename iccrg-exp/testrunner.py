@@ -17,6 +17,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 
+matplotlib.use('Agg')
 log.basicConfig(level=log.INFO)
 
 plt.style.use('ggplot')
