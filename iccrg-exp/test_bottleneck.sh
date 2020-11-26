@@ -41,7 +41,7 @@ for i in $(seq $HOST_PAIRS); do
     ECN[c$i]=$(eval echo '${'CC${i}_ECN':-0}')
     CCA[c$i]=$(eval echo '${'CC${i}_CCA':-prague}')
     CCA[s$i]=$(eval echo '${'CC${i}_CCA':-prague}')
-    PAIR_DELAY[$i]=$(eval echo '${'C${i}_DELAY':-0ms}')
+    PAIR_DELAY[$i]=$(eval echo '${'CC${i}_DELAY':-0ms}')
 done
 
 RATE=${RATE:-100Mbit}
