@@ -6,7 +6,7 @@ See the general [L4S Landing Page](https://riteproject.eu/dctth) for various res
 # Components
 
 All various components required to test L4S are under a [common Github umbrella](https://github.com/L4Steam). In particular:
-- [Linux kernel](https://gitub.com/L4Steam/linux) containing the necessary patches
+- [Linux kernel](https://github.com/L4Steam/linux) containing the necessary patches
 enabling TCP prague and the dualpi2 qdisc. The repository also provides
 pre-packaged debian binaries to ease up experimentation.
 - [iproute2](https://github.com/L4steam/iproute2) user-space utilities to manage
