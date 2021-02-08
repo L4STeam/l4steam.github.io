@@ -18,6 +18,19 @@ in-depth testing.
 - [SCReAM](https://github.com/L4Steam/scream), a mobile optimized congestion
 control algorithm which supports L4S.
 
+# Prague requirements Compliance
+
+The IETF [draft-ietf-tsvwg-ecn-l4s-id](https://datatracker.ietf.org/doc/draft-ietf-tsvwg-ecn-l4s-id/) contains a list of requirements an L4S congestion control should comply with. The following template document provides a checklist to the different normative paragraphs listed in [draft-ietf-tsvwg-ecn-l4s-id-12](https://datatracker.ietf.org/doc/html/draft-ietf-tsvwg-ecn-l4s-id-12):
+- [Prague_requirements_Compliance_and_Objections_template.docx](https://l4steam.github.io/PragueReqs/Prague_requirements_Compliance_and_Objections_template.docx)
+
+This list of requirements is still being discussed and finetuned. Consensus on feasibility, performance and usefulness needs to be reached. The following contributions, grouped in (partial) available implementations and potential/planned implementations will be taken into account for that purpose.
+Currently available implementations:
+- Linux TCP-Prague by L4Steam (this git): [Prague_requirements_Compliance_and_Objections_Linux_TCP-Prague.docx](https://l4steam.github.io/PragueReqs/Prague_requirements_Compliance_and_Objections_Linux_TCP-Prague.docx)
+- ...
+
+Planned/potential implementations:
+- ...
+
 # Experiments
 
 [TCP Prague controlled RTT dependence](rtt-independence)
