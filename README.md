@@ -1,5 +1,4 @@
-This repository hosts various resources about L4S, and the existing
-implementations.
+This repository hosts various resources about L4S, and the existing implementations.
 
 See the general [L4S Landing Page](https://riteproject.eu/dctth) for various resources around L4S.
 
@@ -14,8 +13,8 @@ the dualpi2 qdisc and query the TCP Prague statistics.
 - [GUI (l4sdemo)](https://github.com/L4steam/l4sdemo) that enables to dynamically interact with a testbed,
 visualising per-packet latencies, ... as well as support script to automate more
 in-depth testing.
+- [l4steam.github.io](https://github.com/L4STeam/l4steam.github.io), the [web interface](https://l4steam.github.io/) for this repository with links to main components, current status (Feb 2021) of Prague implementations and experiments.
 - [SCReAM](https://github.com/L4Steam/scream), a mobile optimized congestion control algorithm which supports L4S.
-- [Virtual machine provisioning scripts (tcp-prague-box)](https://github.com/L4STeam/tcp-prague-box) to automate test VM creation.
 
 # Prague requirements Compliance
 
