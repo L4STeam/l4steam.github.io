@@ -19,13 +19,14 @@ in-depth testing.
 # Prague requirements Compliance
 
 The IETF [draft-ietf-tsvwg-ecn-l4s-id](https://datatracker.ietf.org/doc/draft-ietf-tsvwg-ecn-l4s-id/) contains a list of requirements an L4S congestion control should comply with. The following template document provides a checklist to the different normative paragraphs listed in [draft-ietf-tsvwg-ecn-l4s-id-12](https://datatracker.ietf.org/doc/html/draft-ietf-tsvwg-ecn-l4s-id-12):
-- [Prague_requirements_Compliance_and_Objections_template.docx](https://l4steam.github.io/PragueReqs/Prague_requirements_Compliance_and_Objections_template.docx)
+- [Template_L4S_requirements_Compliance_and_Objections.docx](https://l4steam.github.io/PragueReqs/Template_L4S_requirements_Compliance_and_Objections.docx)   [pdf](https://l4steam.github.io/PragueReqs/Template_L4S_requirements_Compliance_and_Objections.pdf)
 
 This list of requirements is still being discussed and finetuned. Consensus on feasibility, performance and usefulness needs to be reached. The following contributions, grouped in (partial) available implementations and potential/planned implementations will be taken into account for that purpose.
 
-Currently available implementations:
-- Linux TCP-Prague by L4Steam (this git): [Prague_requirements_Compliance_and_Objections_Linux_TCP-Prague.docx](https://l4steam.github.io/PragueReqs/Prague_requirements_Compliance_and_Objections_Linux_TCP-Prague.docx)
-- SCReAM by Ingemar Johansson (RFC8298 std + [running code](https://github.com/L4Steam/scream)): [Prague_requirements_Compliance_and_Objections_Scream-20210208](https://l4steam.github.io/PragueReqs/Prague_requirements_Compliance_and_Objections_Scream.docx)
+Currently existing implementations:
+- Linux TCP-Prague by L4Steam (this git): [Linux_TCP_Prague_L4S_requirements_Compliance_and_Objections pdf](https://l4steam.github.io/PragueReqs/Linux_TCP_Prague_L4S_requirements_Compliance_and_Objections.pdf)   [docx](https://l4steam.github.io/PragueReqs/Prague_requirements_Compliance_and_Objections_Linux_TCP-Prague.docx)
+- SCReAM by Ingemar Johansson (RFC8298 std + [running code](https://github.com/L4Steam/scream)): [Scream_L4S_requirements_Compliance_and_Objections pdf](https://l4steam.github.io/PragueReqs/Scream_L4S_requirements_Compliance_and_Objections.docx)   [docx](https://l4steam.github.io/PragueReqs/Scream_L4S_requirements_Compliance_and_Objections.docx)
+- GeforceNow by NVIDIA: [GeforceNow_L4S_requirements_Compliance_and_Objections pdf](https://l4steam.github.io/PragueReqs/GeforceNow_L4S_requirements_Compliance_and_Objections.docx)   [docx](https://l4steam.github.io/PragueReqs/GeforceNow_L4S_requirements_Compliance_and_Objections.docx)
 - ...
 
 Planned/potential implementations:
