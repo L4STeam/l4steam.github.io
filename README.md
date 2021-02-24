@@ -24,9 +24,12 @@ The IETF [draft-ietf-tsvwg-ecn-l4s-id](https://datatracker.ietf.org/doc/draft-ie
 This list of requirements is still being discussed and finetuned. Consensus on feasibility, performance and usefulness needs to be reached. The following contributions, grouped in (partial) available implementations and potential/planned implementations will be taken into account for that purpose.
 
 Currently existing implementations:
-- Linux TCP-Prague by L4Steam (this git): [Linux_TCP_Prague_L4S_requirements_Compliance_and_Objections pdf](https://l4steam.github.io/PragueReqs/Linux_TCP_Prague_L4S_requirements_Compliance_and_Objections.pdf)   [docx](https://l4steam.github.io/PragueReqs/Prague_requirements_Compliance_and_Objections_Linux_TCP-Prague.docx)
-- SCReAM by Ingemar Johansson (RFC8298 std + [running code](https://github.com/L4Steam/scream)): [Scream_L4S_requirements_Compliance_and_Objections pdf](https://l4steam.github.io/PragueReqs/Scream_L4S_requirements_Compliance_and_Objections.docx)   [docx](https://l4steam.github.io/PragueReqs/Scream_L4S_requirements_Compliance_and_Objections.docx)
-- GeforceNow by NVIDIA: [GeforceNow_L4S_requirements_Compliance_and_Objections pdf](https://l4steam.github.io/PragueReqs/GeforceNow_L4S_requirements_Compliance_and_Objections.docx)   [docx](https://l4steam.github.io/PragueReqs/GeforceNow_L4S_requirements_Compliance_and_Objections.docx)
+- Linux TCP-Prague by L4Steam (this git): [Linux_TCP_Prague_L4S_requirements_Compliance_and_Objections pdf](https://l4steam.github.io/PragueReqs/Linux_TCP_Prague_L4S_requirements_Compliance_and_Objections.pdf)   [docx](https://l4steam.github.io/PragueReqs/Linux_TCP_Prague_L4S_requirements_Compliance_and_Objections.docx)
+- SCReAM by Ingemar Johansson (RFC8298 std + [running code](https://github.com/L4Steam/scream)): [Scream_L4S_requirements_Compliance_and_Objections pdf](https://l4steam.github.io/PragueReqs/Scream_L4S_requirements_Compliance_and_Objections.pdf)   [docx](https://l4steam.github.io/PragueReqs/Scream_L4S_requirements_Compliance_and_Objections.docx)
+- GeforceNow by NVIDIA: [GeforceNow_L4S_requirements_Compliance_and_Objections pdf](https://l4steam.github.io/PragueReqs/GeforceNow_L4S_requirements_Compliance_and_Objections.pdf)   [docx](https://l4steam.github.io/PragueReqs/GeforceNow_L4S_requirements_Compliance_and_Objections.docx)
+- ...
+
+Planned/potential implementations:
 - ...
 
 Planned/potential implementations:
