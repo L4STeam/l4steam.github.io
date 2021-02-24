@@ -32,9 +32,6 @@ Currently existing implementations:
 Planned/potential implementations:
 - ...
 
-Planned/potential implementations:
-- ...
-
 # Experiments
 
 [TCP Prague controlled RTT dependence](rtt-independence)
