@@ -32,6 +32,8 @@ Currently existing implementations:
 Planned/potential implementations:
 - ...
 
+Consolidated view including private contributions: [Prague_requirements_consolidated.pdf](https://l4steam.github.io/PragueReqs/Prague_requirements_consolidated.pdf)
+
 # Experiments
 
 [TCP Prague controlled RTT dependence](rtt-independence)
