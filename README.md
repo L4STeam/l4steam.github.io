@@ -30,9 +30,10 @@ Currently existing implementations:
 - ...
 
 Planned/potential implementations:
+- Apple: [Apple_L4S_requirements_Compliance_and_Objections pdf](https://l4steam.github.io/PragueReqs/Apple_L4S_requirements_Compliance_and_Objections.pdf)   [docx](https://l4steam.github.io/PragueReqs/Apple_L4S_requirements_Compliance_and_Objections.docx) [pages](https://l4steam.github.io/PragueReqs/Apple_L4S_requirements_Compliance_and_Objections.pages)
 - ...
 
-Consolidated view including private contributions: [Prague_requirements_consolidated.pdf](https://l4steam.github.io/PragueReqs/Prague_requirements_consolidated.pdf)
+Consolidated view including private contributions (updated v2): [Prague_requirements_consolidated.pdf](https://l4steam.github.io/PragueReqs/Prague_requirements_consolidated.pdf)
 
 # Experiments
 
