@@ -2,7 +2,7 @@
 
 This page explains the comparison results when testing the behavior of 
 PIE, DualPI2 and CoDel when combined with non-responsive UDP traffic with and without ECN. 
-In short, the results show no benefits for PIE/PI2 nor for DualPI2, 
+In short, the results show no significant benefits for PIE/PI2 nor for DualPI2, 
 but problematic behavior for CoDel and FQ_CoDel.
 
 ## Background
@@ -36,10 +36,15 @@ dropping ECT packets when the PIE and PI2 probability exceeds an ECN-drop thresh
 *Figure 1: Rate share for 5 flows of each ECT and not-ECT type of traffic with one type of unresponsive UDP traffic (not-ECT or ECT(0/1)*
 
 CoDel does not have this ECN-drop threshold mechanism (although recommended in RFC7567), with uncontrolled ECN throughput and latency as a result,
-as shown in figure 1 and figure 2 in more detail (ECT-UDP using more than 99.9% of the capacity for even light overload around the link capacity).
+as shown in figure 1 and figure 2 in more detail (ECT-UDP using more than 99.9% of the capacity for even light overload around the link capacity). 
 
 ![Rate Share](https://l4steam.github.io/overload-results/overload_plots/overload_rs99.png)
 *Figure 2: Same as figure 1, but zoomed in on 99-100%*
+
+Figure 3 belowshows that the CoDel queue is overflowing for the ECT unresponsive traffic (default queue limit is 10240 packets in FQ_CoDel) and even for not-ECT traffic when the overload gets higher.
+
+![Rate Share](https://l4steam.github.io/overload-results/overload_plots/overload_qd.png)
+*Figure 3: Queue delays for the same experiments as in figure 1*
 
 
 ## Nitty details (how all pieces fall into place)
@@ -53,9 +58,6 @@ and the dropping is applied to both queues. Also note that the Classic queue wil
 Only when non-responsive traffic is below the link capacity it can fully use that share, making the responsive flows share the rest of the capacity (as usual for any AQM on the Internet on a shared queue).
 
 The inability of CoDel to control overload traffic is striking when looking at the CoDel delay results in figure 3. 
-
-![Rate Share](https://l4steam.github.io/overload-results/overload_plots/overload_qd.png)
-*Figure 3: Queue delays for the same experiments as in figure 1*
 
 Figure 4 shows that the queue is continuously in tail-drop mode for ECT-UDP traffic.
 
