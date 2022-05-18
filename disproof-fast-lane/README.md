@@ -1,8 +1,10 @@
 # Disproof of 'Throughput Bonus' or 'Fast-Lane' Objection
 
+This page is alo available as a set of slides [[PDF](202205-ThruputBonusDisproof.pdf)].
+
 ## Background
 
-* The [objection](https://sce.dnsmgr.net/downloads/L4S-WGLC2-objection-details.pdf) (p4-5) claimed the DualQ offers a 'fast-lane' or 'throughput bonus' and  
+* The [objection](https://sce.dnsmgr.net/downloads/L4S-WGLC2-objection-details.pdf) (p4-5) claimed the [DualQ](https://datatracker.ietf.org/doc/html/draft-ietf-tsvwg-aqm-dualq-coupled) offers a 'fast-lane' or 'throughput bonus' and  
    "the bonus is easily exploited by unscrupulous senders without disabling congestion control"  
 * These claims were based on:
   * a single experiment run with
@@ -12,24 +14,30 @@
 
 ## Experiment A. 2 CUBIC flows; 1 "tweaked" flow joins after 10s
 
-
-
-* Does not reproduce objection
-* Tweaked flow gets significantly smaller  capacity share (blue), not larger
+| Setup | Results |
+|-------|---------|
+| ![Experiment A - setup](expA-setup.png) | ![Experiment A - primary metrics](CLI1_CUBIC_ECT0_CLI2_CUBIC_ECT1_response1.svg) |
+|       | <ul><li>Does not reproduce objection</li><li>Tweaked flow gets significantly smaller capacity share (blue), not larger</li></ul> |
 
 ## Experiment B. Tweaked flow then also made unresponsive
 
-* Reproduces objection very closely 
-  * but objection claimed cong. ctrl was not disabled
-* Tweaked flow now gets 40Mbps (blue)
-  * as expected for 40Mbps paced unrespns've flow
 
-plot from objection for comparison
+| Setup | Results |
+|-------|---------|
+| ![Experiment B - setup](expB-setup.png) | ![Experiment B - primary metrics](CLI1_CUBIC_ECT0_CLI2_CUBIC_ECT1_noresponse1.svg) |
+|       | <ul><li>Reproduces objection very closely</li><ul><li>but objection claimed cong. ctrl was not disabled</li></ul><li>Tweaked flow now gets 40Mbps (blue)</li><ul><li>as expected for 40Mbps paced unrespns've flow</li></ul></ul> |
+
+| Setup | Results from objection for comparison |
+|-------|---------------------------------------|
+| Only described at high level - no response to repeated requests for clarification | ![Objection - primary metrics](L4S-WGLC2-objection-details-ThruputBonus.png) |
+
 
 ## Control experiment C.: Tweaked flow unresponsive but ECT(0)
 
-* Proves thru'put advantage is due to unresponsiveness, not DualPI2
-* because tweaked flow (blue) gets same advantage in either queue
+| Setup | Results |
+|-------|---------|
+| ![Experiment C - setup](expC-setup.png) | ![Experiment C - primary metrics](CLI1_CUBIC_ECT0_CLI2_CUBIC_ECT0_noresponse1.svg) |
+|       | <ul><li>Proves thru'put advantage is due to unresponsiveness, not DualPI2</li><li>because tweaked flow (blue) gets same advantage in either queue</li></ul> |
 
 ## Summary
 
@@ -49,9 +57,10 @@ plot from objection for comparison
 
 ## Control experiment D.: Tweaked flow ECT(0) and responsive
 
-* Proves 40Mbps pacing is only a cap
-* Because tweaked flow behaves:
-  * as normal, given stable rate below 40Mb/s
+| Setup | Results |
+|-------|---------|
+| ![Experiment D - setup](expD-setup.png) | ![Experiment D - primary metrics](CLI1_CUBIC_ECT0_CLI2_CUBIC_ECT0_response1.svg) |
+|       | <ul><li>Proves 40Mbps pacing is only a cap</li><li>Because tweaked flow behaves:</li><ul><li>as normal, given stable rate below 40Mb/s</li></ul></ul> |
 
 ## Experiment details
 
@@ -63,15 +72,19 @@ All nodes:
 
 ## Inside experiment A: 2 CUBIC flows; 1 "tweaked"
 
-* Lower plot explains low thru'put of tweaked flow, due to its response to deliberately aggressive coupled marking (blue) instead of the Classic marking (red) intended for CUBIC
-* zero native L4S marking (green dashed)
+| Setup | Results |
+|-------|---------|
+| ![Experiment A - setup](expA-setup.png) | ![Experiment A - primary metrics](CLI1_CUBIC_ECT0_CLI2_CUBIC_ECT1_response1.svg) |
+|                                         | ![Experiment A - primary metrics](CLI1_CUBIC_ECT0_CLI2_CUBIC_ECT1_response2.svg) |
+|       | <ul><li>Lower plot explains low thru'put of tweaked flow, due to its response to deliberately aggressive coupled marking (blue) instead of the Classic marking (red) intended for CUBIC</li><li>zero native L4S marking (green dashed)</li></ul> |
 
 ## Inside experiment B: Tweaked and unresponsive flow
 
-* Lower plot shows that the unresponsive L flow squeezes the C flow into less capacity by causing 
-  * higher C congestion (red) and 
-  * in turn, higher coupled L congestion (blue) which it ignores
-* Still zero native L4S marking (green dashed)
+| Setup | Results |
+|-------|---------|
+| ![Experiment B - setup](expB-setup.png) | ![Experiment B - primary metrics](CLI1_CUBIC_ECT0_CLI2_CUBIC_ECT1_noresponse1.svg) |
+|                                         | ![Experiment B - primary metrics](CLI1_CUBIC_ECT0_CLI2_CUBIC_ECT1_noresponse2.svg) |
+|       | <ul><li>Lower plot shows that the unresponsive L flow squeezes the C flow into less capacity by causing</li><ul><li>higher C congestion (red) and</li><li>in turn, higher coupled L congestion (blue) which it ignores</li></ul><li>Still zero native L4S marking (green dashed)</li></ul> |
 
 ---
 Chia-Yu Chang (Nokia Bell Labs), [Koen De Schepper](https://www.bell-labs.com/about/researcher-profiles/koende_schepper/) (Nokia Bell Labs) and [Bob Briscoe](https://bobbriscoe.net/) (Independent)
