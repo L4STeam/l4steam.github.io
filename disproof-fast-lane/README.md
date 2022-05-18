@@ -1,6 +1,6 @@
 # Disproof of 'Throughput Bonus' or 'Fast-Lane' Objection
 
-This page is alo available as a set of slides [[PDF](202205-ThruputBonusDisproof.pdf)].
+This page is also available as a set of slides [[PDF](202205-ThruputBonusDisproof.pdf)].
 
 ## Background
 
@@ -25,7 +25,7 @@ This page is alo available as a set of slides [[PDF](202205-ThruputBonusDisproof
 | Setup | Results |
 |-------|---------|
 | ![Experiment B - setup](expB-setup.png) | ![Experiment B - primary metrics](CLI1_CUBIC_ECT0_CLI2_CUBIC_ECT1_noresponse1.svg) |
-|       | <ul><li>Reproduces objection very closely</li><ul><li>but objection claimed cong. ctrl was not disabled</li></ul><li>Tweaked flow now gets 40Mbps (blue)</li><ul><li>as expected for 40Mbps paced unrespns've flow</li></ul></ul> |
+|       | <ul><li>Reproduces objection very closely</li><ul><li>but objection claimed <b>congestion control was not disabled</b></li></ul><li>Tweaked flow now gets 40Mbps (blue)</li><ul><li>as expected for 40Mbps paced unrespns've flow</li></ul></ul> |
 
 | Setup | Results from objection for comparison |
 |-------|---------------------------------------|
